@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-gen",
+  "version": "1.0.0",
+  "description": "Module 10 HW",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwinahn/team-profile-gen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwinahn/team-profile-gen/issues"
+  },
+  "homepage": "https://github.com/kwinahn/team-profile-gen#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
