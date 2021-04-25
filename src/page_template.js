@@ -1,9 +1,28 @@
-const createCards = employeeData => {
-  console.log(employeeData);
-  
-      const engineer = employeeData.engineerArr.map(function(card) {
-          let engineerCard = 
-          `<div class="card employee-card">
+const createCards = (employeeData) => {
+	console.log(employeeData);
+
+	const manager = employeeData.managerArr.map(function (card) {
+		let managerCard = `
+    <div class="card employee-card">
+      <div class="card-header">
+          <h2 class="card-title">${card.name}</h2>
+          <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
+      </div>
+      <div class="card-body">
+          <ul class="list-group">
+              <li class="list-group-item">ID: ${card.id}</li>
+              <li class="list-group-item">Email: <a href="mailto:${card.email}">${card.email}</a></li>
+              <li class="list-group-item">Office number: ${card.office}</li>
+          </ul>
+      </div>
+    </div>
+    `;
+
+		return managerCard;
+	});
+
+	const engineer = employeeData.engineerArr.map(function (card) {
+		let engineerCard = `<div class="card employee-card">
             <div class="card-header">
                 <h2 class="card-title">${card.name}</h2>
                 <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>Engineer</h3>
@@ -16,36 +35,12 @@ const createCards = employeeData => {
                 </ul>
             </div>
           </div>
-          `
-          return engineerCard
-      });
-  
-      const manager = employeeData.managerArr.map(function(card) {
-          let managerCard = 
-          `
-          <div class="card employee-card">
-            <div class="card-header">
-                <h2 class="card-title">${card.name}</h2>
-                <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">ID: ${card.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${card.email}">${card.email}</a></li>
-                    <li class="list-group-item">Office number: ${card.office}</li>
-                </ul>
-            </div>
-          </div>
-          `
-          
-  
-          return managerCard
-          
-      })
-      
-      const intern = employeeData.internArr.map(function(card) {
-          let internCard = 
-          `
+          `;
+		return engineerCard;
+	});
+
+	const intern = employeeData.internArr.map(function (card) {
+		let internCard = `
           <div class="card employee-card">
             <div class="card-header">
                 <h2 class="card-title">${card.name}</h2>
@@ -59,14 +54,17 @@ const createCards = employeeData => {
                 </ul>
             </div>
           </div>
-          `
-          return internCard
-      })
-      return [engineer, manager, intern]
-  }
+          `;
+		return internCard;
+	});
+
+ 
+	return [manager, engineer, intern]
   
-  module.exports = htmlTemplate => {
-      return `
+};
+
+module.exports = (htmlTemplate) => {
+	return `
       <!DOCTYPE html>
           <html lang="en">
           <head>
@@ -96,5 +94,5 @@ const createCards = employeeData => {
             </div>    
           </body>
           </html>    
-      `
-  }
+      `;
+};

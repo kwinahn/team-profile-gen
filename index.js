@@ -4,7 +4,7 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Employee = require('./lib/Employee');
-const generateSite = require('./src/page_template');
+const generateProfile = require('./src/page_template');
 const {rejects} = require('assert');
 const {resolve} = require('path');
 
@@ -15,6 +15,7 @@ let internArr = [];
 
 //merge several arrays in object to send to page-template.js
 let employeeArr = {managerArr, engineerArr, internArr};
+
 
 function promptUser() {
 	return inquirer
@@ -62,7 +63,7 @@ function promptUser() {
 				type: 'list',
 				name: 'role',
 				message: `What is this employee's role here?(Use arrow keys)`,
-				choices: ['Engineer', 'Manager', 'Intern'],
+				choices: ['Manager', 'Engineer', 'Intern'],
 			},
 		])
 		.then(({employeename, id, email, role}) => {
@@ -156,7 +157,7 @@ function promptUser() {
 
 promptUser()
 	.then((employeeData) => {
-		return generateSite(employeeArr);
+		return generateProfile(employeeArr);
 	})
 	.then((htmlFile) => {
 		fs.writeFile('./dist/index.html', htmlFile, (err) => {
