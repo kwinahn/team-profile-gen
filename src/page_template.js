@@ -3,7 +3,7 @@ const createCards = (employeeData) => {
 
 	const manager = employeeData.managerArr.map(function (card) {
 		let managerCard = `
-    <div class="card employee-card">
+    <div class="card employee-card" style="width: 20rem;">
       <div class="card-header">
           <h2 class="card-title">${card.name}</h2>
           <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
@@ -22,39 +22,40 @@ const createCards = (employeeData) => {
 	});
 
 	const engineer = employeeData.engineerArr.map(function (card) {
-		let engineerCard = `<div class="card employee-card">
-            <div class="card-header">
-                <h2 class="card-title">${card.name}</h2>
-                <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>Engineer</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">ID: ${card.id}</li>
-                    <li class="list-group-item">Email: <a href='mailto:${card.email}'>${card.email}</a></li>
-                    <li class="list-group-item">GitHub: <a href="https://github.com/${card.github}" target="_blank">${card.github}</a></li>
-                </ul>
-            </div>
-          </div>
-          `;
+		let engineerCard = `
+    <div class="card employee-card" style="width: 20rem;">
+      <div class="card-header">
+          <h2 class="card-title">${card.name}</h2>
+          <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>Engineer</h3>
+      </div>
+      <div class="card-body">
+          <ul class="list-group">
+              <li class="list-group-item">ID: ${card.id}</li>
+              <li class="list-group-item">Email: <a href='mailto:${card.email}'>${card.email}</a></li>
+              <li class="list-group-item">GitHub: <a href="https://github.com/${card.github}" target="_blank">${card.github}</a></li>
+          </ul>
+      </div>
+    </div>
+    `;
 		return engineerCard;
 	});
 
 	const intern = employeeData.internArr.map(function (card) {
 		let internCard = `
-          <div class="card employee-card">
-            <div class="card-header">
-                <h2 class="card-title">${card.name}</h2>
-                <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>Intern</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">ID: ${card.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${card.email}">${card.email}</a></li>
-                    <li class="list-group-item">School: ${card.school}</li>
-                </ul>
-            </div>
-          </div>
-          `;
+      <div class="card employee-card" style="width: 20rem;">
+        <div class="card-header">
+            <h2 class="card-title">${card.name}</h2>
+            <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>Intern</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${card.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${card.email}">${card.email}</a></li>
+                <li class="list-group-item">School: ${card.school}</li>
+            </ul>
+        </div>
+      </div>
+      `;
 		return internCard;
 	});
 
