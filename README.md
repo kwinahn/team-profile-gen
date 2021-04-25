@@ -9,4 +9,4 @@ An application that takes in user's input and generate a team profile in html
 3. Go to `__tests__` directory and run `npm run test` to check passing tests
 
 ### Usage and demo
-![demo](./assets/)
+![demo](./assets/team-profile-demo.gif)
