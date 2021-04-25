@@ -1,67 +1,100 @@
-function generateHtml (roster) {
-  return `
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <title>Employee Roster</title>
-    //put link fontawesome and bootstrap
-  </head>
-  <body>
-
-
-  </body>
-  </html>
-  `
-}
-
-function generateEmployeeCards (roster) {
-  let cards = '';
-  for (i = 0; i < roster.length; i++) {
-    let name = roster[i].name;
-    let id = roster[i].id;
-    let email = roster[i].email;
-    let role = roster[i].role;
-    let extraInfo = roster[i][chooseProperty(role)]
-    
-    // if (roster[i].role === 'Manager') {
-    //   extraInfo = roster[i].office;
-    // } else if (roster[i].role === 'Intern') {
-    //   extraInfo = roster[i].school;
-    // } else {
-    //   extraInfo = roster[i].github;
-    // }
+const createCards = employeeData => {
+  console.log(employeeData);
   
-    cards += `
+      const engineer = employeeData.engineerArr.map(function(card) {
+          let engineerCard = 
+          `<div class="card employee-card">
+            <div class="card-header">
+                <h2 class="card-title">${card.name}</h2>
+                <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>Engineer</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">ID: ${card.id}</li>
+                    <li class="list-group-item">Email: <a href='mailto:${card.email}'>${card.email}</a></li>
+                    <li class="list-group-item">GitHub: <a href="https://github.com/${card.github}" target="_blank">${card.github}</a></li>
+                </ul>
+            </div>
+          </div>
+          `
+          return engineerCard
+      });
+  
+      const manager = employeeData.managerArr.map(function(card) {
+          let managerCard = 
+          `
+          <div class="card employee-card">
+            <div class="card-header">
+                <h2 class="card-title">${card.name}</h2>
+                <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">ID: ${card.id}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${card.email}">${card.email}</a></li>
+                    <li class="list-group-item">Office number: ${card.office}</li>
+                </ul>
+            </div>
+          </div>
+          `
+          
+  
+          return managerCard
+          
+      })
       
-      <div class="card" style="width: 18rem;">
-        <div class="card-header">
-          <p></p>
-        </div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    `
+      const intern = employeeData.internArr.map(function(card) {
+          let internCard = 
+          `
+          <div class="card employee-card">
+            <div class="card-header">
+                <h2 class="card-title">${card.name}</h2>
+                <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>Intern</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">ID: ${card.id}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${card.email}">${card.email}</a></li>
+                    <li class="list-group-item">School: ${card.school}</li>
+                </ul>
+            </div>
+          </div>
+          `
+          return internCard
+      })
+      return [engineer, manager, intern]
   }
-
-  return cards
-}
-
-function chooseProperty (role) {
-  if (role === 'Engineer') return 'github';
-  else if (role === 'Intern') return 'school';
-  else return 'office';
-}
-
+  
+  module.exports = htmlTemplate => {
+      return `
+      <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <title>My Team</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="style.css">
+            <script src="https://kit.fontawesome.com/c502137733.js"></script>
+          </head>
+          <body>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 jumbotron mb-3 team-heading">
+                        <h1 class="text-center">My Team</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="team-area col-12 d-flex justify-content-center">
+                      ${createCards(htmlTemplate)}
+                    </div>
+                </div>
+            </div>    
+          </body>
+          </html>    
+      `
+  }
